@@ -1,4 +1,6 @@
-@import "./variables";
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
+@import "./AE-variables";
+@import "./ae-input";
 
 body {
   font-family: "Open Sans", sans-serif;
@@ -6,14 +8,14 @@ body {
   line-height: 1;
 }
 
-textarea {
-  background: transparent;
-  border: none;
-  resize: none;
-  color: $black;
-  border-left: 1px solid black;
-  padding: 10px;
-}
+// textarea {
+//   background: transparent;
+//   border: none;
+//   resize: none;
+//   color: $black;
+//   border-left: 1px solid black;
+//   padding: 10px;
+// }
 
 .jumbotron {
   text-align: center;
@@ -45,7 +47,7 @@ textarea {
 }
 
 .past {
-  background-color: #d3d3d3;
+  background-color: #be3939;
   color: white;
 }
 

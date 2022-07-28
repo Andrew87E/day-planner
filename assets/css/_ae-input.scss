@@ -1,0 +1,58 @@
+.ae-input {
+  background-color: $black;
+  border: solid black 1px !important;
+  text-align: center;
+  border-radius: 9999px !important;
+  font-size: xx-large !important;
+  &::placeholder {
+    font-weight: 700;
+    font-style: oblique;
+  }
+  &:active {
+    border: $black !important;
+    outline: $black !important;
+  }
+  &:focus {
+    select{
+        &:focus{
+            border: black !important;
+            outline: $black !important;
+        }
+    }
+    textarea {
+        &:focus{
+            border: black !important;
+            outline: $black !important;
+        }
+      border: black !important;
+      outline: $black !important;
+    }
+  }
+}
+
+button {
+  border-radius: 9999px !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none !important;
+}
+
+.past {
+  background-color: gray;
+  color: white;
+
+}
+
+.present {
+  background-color: $red;
+  color: white;
+}
+
+.future {
+  background-color: green;
+  color: black;
+}
