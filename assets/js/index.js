@@ -2,27 +2,29 @@ $(window).on("load", function () {
 
   $("#currentTime").text(moment().format("dddd, MMMM Do h:mm a"));
 
-  setInterval(
-    (() => {
-      var currentHour = moment().hours();
 
-      $(".ae-input").each(function () {
-        var timer = parseInt($(this).attr("aria-label"));
+  function updateTheStuff() {
+    var currentHour = moment().hours();
 
-        if (timer < currentHour) {
-          $(this).addClass("past");
-        } else if (timer === currentHour) {
-          $(this).removeClass("past");
-          $(this).addClass("present");
-        } else {
-          $(this).removeClass("past");
-          $(this).removeClass("present");
-          $(this).addClass("future");
-        }
-      });
-    })(),
-    15000
-  );
+    $(".ae-input").each(function () {
+      var timer = ($(this).attr("aria-label"));
+
+      if (timer < currentHour) {
+        $(this).addClass("past");
+      } else if (timer === currentHour) {
+        $(this).removeClass("future");
+        $(this).addClass("present");
+      } else {
+        $(this).removeClass("past");
+        $(this).removeClass("present");
+        $(this).addClass("future");
+      }
+    });
+  }
+
+
+  setInterval(updateTheStuff, 1000);
+  updateTheStuff()
 
   $("#9am").val(localStorage.getItem("9am"));
   $("#10am").val(localStorage.getItem("10am"));
@@ -42,8 +44,8 @@ $(window).on("load", function () {
 
 
   $(".ae-clear").on("click", () => {
-    $(this).siblings('.ae-input').val(" ");
+    const string = $(this).siblings('.ae-input').val()
     const key = $(this).siblings('.ae-input').attr('id');
-    localStorage.removeItem(key);
+    localStorage.removeItem(key, string);
   });
 });
