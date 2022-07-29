@@ -22,7 +22,6 @@ $(window).on("load", function () {
     });
   }
 
-
   setInterval(updateTheStuff, 1000);
   updateTheStuff()
 
@@ -48,4 +47,14 @@ $(window).on("load", function () {
     const key = $(this).siblings('.ae-input').attr('id');
     localStorage.removeItem(key, string);
   });
+
+  $('.ae-delete').on("mouseover", function(){
+    this.textContent = 'Delete'
+  })
+
+  $('ae-delete').mouseout(function(){
+    this.textContent = this.siblings('.ae-input').attr('id')
+
+  })
 });
+
