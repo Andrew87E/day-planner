@@ -1,48 +1,49 @@
-const saved = JSON.stringify(moment().format("M Do YY"));
-const pulledTodos = JSON.parse(localStorage.getItem(saved)) || {};
+$(window).on("load", function () {
 
-//Header clock feature and calling update function
-$("#currentTime").text(moment().format("MMMM Do YYYY, h:mm a"));
-setInterval(update, 1000);
+  $("#currentTime").text(moment().format("dddd, MMMM Do h:mm a"));
 
-function update() {
-  $("#currentTime").text(moment().format("MMMM Do YYYY, h:mm a"));
-  colorBackground();
-}
+  setInterval(
+    (() => {
+      var currentHour = moment().hours();
 
-// function to color backgrounds of input boxes based on time of day past present or future
-function colorBackground() {
-  const currentTime = moment().format("h a");
-  $(".ae-input").each(function () {
-    const time = $(this).attr("id");
-    if (time < currentTime) {
-      $(this).addClass("past");
-    } else if (time === currentTime) {
-      $(this).addClass("present");
-    } else {
-      $(this).addClass("future");
-    }
+      $(".ae-input").each(function () {
+        var timer = parseInt($(this).attr("aria-label"));
+
+        if (timer < currentHour) {
+          $(this).addClass("past");
+        } else if (timer === currentHour) {
+          $(this).removeClass("past");
+          $(this).addClass("present");
+        } else {
+          $(this).removeClass("past");
+          $(this).removeClass("present");
+          $(this).addClass("future");
+        }
+      });
+    })(),
+    15000
+  );
+
+  $("#9am").val(localStorage.getItem("9am"));
+  $("#10am").val(localStorage.getItem("10am"));
+  $("#11am").val(localStorage.getItem("11am"));
+  $("#12am").val(localStorage.getItem("12pm"));
+  $("#1pm").val(localStorage.getItem("1pm"));
+  $("#2pm").val(localStorage.getItem("2pm"));
+  $("#3pm").val(localStorage.getItem("3pm"));
+  $("#4pm").val(localStorage.getItem("4pm"));
+  $("#5pm").val(localStorage.getItem("5pm"));
+
+  $('.ae-submit').on('click', function () {
+    const userInput = $(this).siblings('.ae-input').val();
+    const key = $(this).siblings('.ae-input').attr('id');
+    localStorage.setItem(key, userInput);
   });
-}
 
-//Saving values of input box to local storage on click based on location pushing them to pulledTodos array
-$(".ae-submit").on("click", () => {
-  let todo = $(this).siblings(".ae-input").val();
-  let timeStamp = $(this).siblings(".ae-input").text().trim();
-  pulledTodos[timeStamp] = todo;
-  localStorage.setItem(saved, JSON.stringify(pulledTodos));
-});
 
-// clears input box and local storage on click
-$(".ae-clear").on("click", () => {
-  $(this).siblings(".ae-input").val("");
-  localStorage.removeItem(this);
-});
-
-//Populating saved values in the dom
-$(".ae-input").each(function (index) {
-  let toGet = $(this).text().trim();
-  if (pulledTodos[toGet]) {
-    $(this).siblings("input").val(pulledTodos[toGet]);
-  }
+  $(".ae-clear").on("click", () => {
+    $(this).siblings('.ae-input').val(" ");
+    const key = $(this).siblings('.ae-input').attr('id');
+    localStorage.removeItem(key);
+  });
 });
