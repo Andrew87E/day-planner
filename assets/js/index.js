@@ -12,7 +12,7 @@ $(window).on("load", function () {
       if (timer < currentHour) {
         $(this).addClass("past");
       } else if (timer === currentHour) {
-        $(this).removeClass("future");
+        $(this).removeClass("past");
         $(this).addClass("present");
       } else {
         $(this).removeClass("past");
