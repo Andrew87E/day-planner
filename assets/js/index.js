@@ -11,7 +11,7 @@ $(window).on("load", function () {
 
       if (timer < currentHour) {
         $(this).addClass("past");
-      } else if (timer === currentHour) {
+      } else if (timer == currentHour) {
         $(this).removeClass("past");
         $(this).addClass("present");
       } else {
