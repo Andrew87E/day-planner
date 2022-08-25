@@ -21,7 +21,7 @@
     <br />
     <br />
     <br />
-    <a href="https://github.com/Andrew87E/day-planner">View Demo</a>
+    <a href="https://andrew87e.github.io/day-planner/">View Demo</a>
     ·
     <a href="https://github.com/Andrew87E/day-planner/issues">Report Bug</a>
     ·
